@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('brand')->nullable();
             $table->text('description');
             $table->integer('price');
-            $table->string('condition');
+            $table->foreignId('condition_id')->constrained()->cascadeOnDelete();
             $table->string('image')->nullable();
             $table->timestamps();
         });

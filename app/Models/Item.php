@@ -37,6 +37,4 @@ class Item extends Model
 
     public function orders() { return $this->hasMany(Order::class); }
 
-    public function likes() {
-    return $this->hasMany(Like::class);}
 }

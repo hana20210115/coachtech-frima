@@ -3,13 +3,14 @@
 @section('title', '商品一覧')
 
 @section('content')
-<div class="container mx-auto">
-    <div class="flex gap-8 border-b border-gray-200 mb-8 text-lg font-bold">
-        <a href="/" class="pb-2 text-red-500 border-b-2 border-red-500">おすすめ</a>
-        <a href="#" class="pb-2 text-gray-500 hover:text-gray-700">マイリスト</a>
+<div class="max-w-7xl mx-auto px-4">
+    
+    <div class="flex gap-10 border-b border-gray-200 py-6 mb-8 text-lg font-bold">
+        <a href="/" class="text-red-500 border-b-2 border-red-500 pb-6 -mb-6">おすすめ</a>
+        <a href="/?tab=mylist" class="text-gray-500 hover:text-gray-700 transition">マイリスト</a>
     </div>
 
-    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-x-6 gap-y-10">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-12">
         @foreach($items as $item)
             <a href="#" class="group block">
                 <div class="relative aspect-square mb-3">

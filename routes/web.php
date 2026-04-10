@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ItemController;
+use App\Http\Controllers\Auth\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,3 +19,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/',[ItemController::class, 'index']);
+
+Route::get('/register', [RegisterController::class, 'create'])->name('register');
+
+Route::post('/register', [RegisterController::class, 'store']);
+
+Route::get('/login', function () {
+    return 'ログイン画面（制作予定）';
+})->name('login');

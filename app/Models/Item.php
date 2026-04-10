@@ -15,6 +15,7 @@ class Item extends Model
         'name',
         'brand',
         'price',
+        'condition_id',
         'description',
         'condition',
         'image',
@@ -36,5 +37,8 @@ class Item extends Model
     public function likes() { return $this->hasMany(Like::class); }
 
     public function orders() { return $this->hasMany(Order::class); }
+
+    public function condition(){ return $this->belongsTo(Condition::class); }
+    
 
 }

@@ -20,10 +20,14 @@ Route::get('/', function () {
 });
 Route::get('/',[ItemController::class, 'index']);
 
-Route::get('/register', [RegisterController::class, 'create'])->name('register');
+//Route::get('/register', [RegisterController::class, 'create'])->name('register');
 
-Route::post('/register', [RegisterController::class, 'store']);
+//Route::post('/register', [RegisterController::class, 'store']);
 
 Route::get('/login', function () {
     return 'ログイン画面（制作予定）';
 })->name('login');
+
+Route::get('/home', function () {
+    return "ここはホーム画面です。メール認証が済んだ人だけが見れる楽園です！";
+})->middleware(['auth', 'verified']);

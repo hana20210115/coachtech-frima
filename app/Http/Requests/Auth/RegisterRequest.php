@@ -46,7 +46,7 @@ class RegisterRequest extends FormRequest
 
 
 
-
+    }
 
 
 

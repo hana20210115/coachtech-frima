@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use App\Http\Requests\Auth\RegisterRequest;
+//use App\Http\Requests\Auth\RegisterRequest;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 
@@ -16,7 +16,6 @@ class RegisterController extends Controller
         return view('auth.register');
 
     }
-    //登録処理
     public function store(RegisterRequest $request)
     {
         $user = User::create([

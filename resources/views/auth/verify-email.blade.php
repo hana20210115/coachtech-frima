@@ -7,9 +7,10 @@
         メール認証を完了してください。
     </div>
 
-    <div class="mb-6 px-10 py-4 bg-gray-200 border border-gray-400 text-black text-lg rounded shadow-sm cursor-default">
+    <a href="http://localhost:8025" target="_blank" 
+       class="mb-6 px-10 py-4 bg-gray-200 border border-gray-400 text-black text-lg rounded shadow-sm hover:bg-gray-300 transition block no-underline">
         認証はこちらから
-    </div>
+    </a>
 
     <form method="POST" action="{{ route('verification.send') }}">
         @csrf

@@ -52,7 +52,7 @@
             </div>
 
             <div class="text-center pt-4 pb-10">
-                <a href="#" class="text-blue-600 text-lg hover:underline">
+                <a href="{{ route('login') }}" class="text-blue-600 text-lg hover:underline">
                     ログインはこちら
                 </a
             </div>

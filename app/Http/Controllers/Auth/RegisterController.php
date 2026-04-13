@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 
 class RegisterController extends Controller
 {
-    //会員登録画面
+    
     public function create()
     {
         return view('auth.register');

@@ -42,6 +42,6 @@ class ProfileController extends Controller
             ]
         );
 
-        return redirect()->route('profile.edit')->with('status', 'プロフィールを更新しました！');
+       return redirect('/')->with('status', 'プロフィールを設定しました！');
     }
 }

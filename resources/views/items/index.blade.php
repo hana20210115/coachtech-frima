@@ -12,7 +12,7 @@
 
     <div class="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-12">
         @foreach($items as $item)
-            <a href="#" class="group block">
+            <a href="{{ route('items.show', ['item_id' => $item->id]) }}" class="group block">
                 <div class="relative aspect-square mb-3">
                     <img src="{{ asset('storage/' . $item->image) }}" alt="{{ $item->name }}" 
                          class="w-full h-full object-cover rounded-xl shadow-sm group-hover:opacity-90 transition">

@@ -22,14 +22,14 @@ class Item extends Model
     ];
 
     
-    public function category()
+    public function categories()
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsToMany(Category::class)->withTimestamps();
     }
 
     public function user()
     {
-    return $this->belongsTo(User::class);
+    return $this->belongsToMany(Category::class)->withTimestamps();
     }
 
     public function comments() { return $this->hasMany(Comment::class); }

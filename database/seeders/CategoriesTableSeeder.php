@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Category;
 
@@ -13,9 +12,28 @@ class CategoriesTableSeeder extends Seeder
      */
     public function run(): void
     {
-        $categories=['ファッション','家電','食品','生活雑貨','コスメ'];
+       
+        $categories = [
+            'ファッション',
+            '家電',
+            'インテリア',
+            'レディース',
+            'メンズ',
+            'コスメ',
+            '本',
+            'ゲーム',
+            'スポーツ',
+            'キッチン',
+            'ハンドメイド',
+            'アクセサリー',
+            'おもちゃ',
+            'ベビー・キッズ'
+        ];
+
         foreach ($categories as $category) {
-            \App\Models\Category::create(['name' => $category]);
+            Category::create([
+                'name' => $category
+            ]);
         }
     }
-}   
+}

@@ -27,11 +27,18 @@
                     </a>
                 </h1>
 
-                <div class="flex-1 max-w-2xl relative">
-                    <input type="text" placeholder="なにをお探しですか？" 
-                           class="w-full bg-white text-gray-900 border-none rounded-md py-1.5 px-4 focus:ring-2 focus:ring-gray-300">
-                </div>
+                <form action="/" method="GET" class="flex-1 max-w-2xl relative">
+                    
+                    @if(request('tab') === 'mylist')
+                        <input type="hidden" name="tab" value="mylist">
+                    @endif
 
+                    <input type="text" 
+                           name="keyword" 
+                           value="{{ request('keyword') }}" 
+                           placeholder="なにをお探しですか？" 
+                           class="w-full bg-white text-gray-900 border-none rounded-md py-1.5 px-4 focus:ring-2 focus:ring-gray-300">
+                </form>
                 <nav class="flex items-center gap-6 font-bold text-sm">
                     @auth
                         

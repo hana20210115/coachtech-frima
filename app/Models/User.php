@@ -46,6 +46,11 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+<<<<<<< HEAD
+<<<<<<< Updated upstream
+=======
+=======
+>>>>>>> main
 
     public function items()
 {
@@ -61,4 +66,13 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function profile(){return $this->hasOne(Profile::class);}
 
+<<<<<<< HEAD
+    public function likedItems()
+{
+    
+    return $this->belongsToMany(Item::class, 'likes')->withTimestamps();
+}
+>>>>>>> Stashed changes
+=======
+>>>>>>> main
 }

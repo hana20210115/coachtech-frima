@@ -10,11 +10,44 @@ use App\Models\Category;
 
 class ItemController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-    $items = Item::all();
-    return view('items.index', compact('items'));
+       
+        if ($request->tab === 'mylist') {
+            
+            if (!auth()->check()) {
+                $items = collect(); 
+                return view('items.index', compact('items'));
+            }
+
+            $query = auth()->user()->likedItems(); 
+
+            
+            if ($request->filled('keyword')) {
+                $query->where('name', 'LIKE', '%' . $request->keyword . '%');
+            }
+
+            $items = $query->get(); 
+            return view('items.index', compact('items'));
+        }
+
+        $query = Item::query();
+
+        if (auth()->check()) {
+            $query->where('user_id', '!=', auth()->id());
+        }
+
+        
+        if ($request->filled('keyword')) {
+            $query->where('name', 'LIKE', '%' . $request->keyword . '%');
+        }
+
+        $items = $query->get();
+
+        return view('items.index', compact('items'));
     }
+
+   
 
     public function show($item_id)
     {

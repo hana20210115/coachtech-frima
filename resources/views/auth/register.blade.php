@@ -8,7 +8,12 @@
     <h1 class="text-3xl font-bold text-center mb-16 text-gray-900">会員登録</h1>
 
     <div class="w-full max-w-xl px-4">
-        <form method="POST" action="{{ route('register') }}" class="space-y-10">
+<<<<<<< HEAD
+        <form method="POST" action="{{ route('register') }}" novalidate 
+        onsubmit="this.querySelector('button[type=submit]').disabled=true;" class="space-y-10">
+=======
+        <form method="POST" action="{{ route('register') }}" onsubmit="this.querySelector('button[type=submit]').disabled=true;" class="space-y-10">
+>>>>>>> main
             @csrf
 
             <div class="space-y-3">

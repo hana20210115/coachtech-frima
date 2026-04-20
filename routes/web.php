@@ -1,13 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-<<<<<<< Updated upstream
-=======
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\CommentController;
->>>>>>> Stashed changes
 
 /*
 |--------------------------------------------------------------------------
@@ -23,8 +20,6 @@ use App\Http\Controllers\CommentController;
 Route::get('/', function () {
     return view('welcome');
 });
-<<<<<<< Updated upstream
-=======
 
  
 Route::get('/email/verify', function () {
@@ -40,4 +35,3 @@ Route::post('/item/{item_id}/comment', [CommentController::class, 'store'])->nam
 Route::post('/purchase/{item_id}', [PurchaseController::class, 'store'])->name('purchase.store');
 
 
->>>>>>> Stashed changes

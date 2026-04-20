@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -21,6 +22,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'postcode', 
+        'address', 
+        'image',
     ];
 
     /**
@@ -42,8 +46,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 =======
+=======
+>>>>>>> main
 
     public function items()
 {
@@ -59,10 +66,13 @@ class User extends Authenticatable
 
     public function profile(){return $this->hasOne(Profile::class);}
 
+<<<<<<< HEAD
     public function likedItems()
 {
     
     return $this->belongsToMany(Item::class, 'likes')->withTimestamps();
 }
 >>>>>>> Stashed changes
+=======
+>>>>>>> main
 }

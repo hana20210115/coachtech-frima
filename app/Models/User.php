@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -22,8 +21,8 @@ class User extends Authenticatable implements MustVerifyEmail
         'name',
         'email',
         'password',
-        'postcode', 
-        'address', 
+        'postcode',
+        'address',
         'image',
     ];
 
@@ -46,33 +45,41 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-=======
-=======
->>>>>>> main
+
+    /*
+    |--------------------------------------------------------------------------
+    | Relationships
+    |--------------------------------------------------------------------------
+    */
 
     public function items()
-{
-    
-    return $this->hasMany(Item::class);
-}
+    {
+        return $this->hasMany(Item::class);
+    }
 
-    public function comments() { return $this->hasMany(Comment::class); }
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
 
-    public function orders() { return $this->hasMany(Order::class); }
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
 
-    public function likes() { return $this->hasMany(Like::class); }
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
+    }
 
-    public function profile(){return $this->hasOne(Profile::class);}
+    public function profile()
+    {
+        return $this->hasOne(Profile::class);
+    }
 
-<<<<<<< HEAD
+   
     public function likedItems()
-{
-    
-    return $this->belongsToMany(Item::class, 'likes')->withTimestamps();
-}
->>>>>>> Stashed changes
-=======
->>>>>>> main
+    {
+        return $this->belongsToMany(Item::class, 'likes')->withTimestamps();
+    }
 }

@@ -12,7 +12,7 @@
        
         <header class="bg-black py-5 px-8 mb-10">
             <div class="flex justify-start items-center">
-                <a href="/" class="hover:opacity-80 transition">
+                <a href="{{ route('items.index') }}" class="hover:opacity-80 transition">
                     <img src="{{ asset('image/logo.png') }}" alt="COACHTECH" class="h-8 w-auto">
                 </a>
             </div>
@@ -22,12 +22,12 @@
         <header class="bg-black text-white py-3 px-6 shadow-md sticky top-0 z-50">
             <div class="container mx-auto flex items-center justify-between gap-8">
                 <h1 class="shrink-0">
-                    <a href="/" class="hover:opacity-80 transition block">
+                    <a href="{{ route('items.index') }}" class="hover:opacity-80 transition block">
                         <img src="{{ asset('image/logo.png') }}" alt="COACHTECH" class="h-9 w-auto block">
                     </a>
                 </h1>
 
-                <form action="/" method="GET" class="flex-1 max-w-2xl relative">
+                <form action="{{ route('items.index') }}" method="GET" class="flex-1 max-w-2xl relative">
                     
                     @if(request('tab') === 'mylist')
                         <input type="hidden" name="tab" value="mylist">

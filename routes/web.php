@@ -8,7 +8,7 @@ use App\Http\Controllers\CommentController;
 
 
 
-Route::get('/',[ItemController::class, 'index'])->name('item.index');
+Route::get('/',[ItemController::class, 'index'])->name('items.index');
 
 Route::middleware(['auth', 'verified'])->group(function () {
 Route::get('/mypage/profile', [ProfileController::class, 'edit'])->name('profile.edit');

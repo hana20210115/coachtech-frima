@@ -7,12 +7,12 @@
     
     <div class="flex gap-10 border-b border-gray-200 py-6 mb-8 text-lg font-bold">
         
-        <a href="/keyword={{ request('keyword') }}" 
+        <a href="{{ route('items.index', ['keyword' => request('keyword')]) }}" 
            class="{{ request('tab') !== 'mylist' ? 'text-red-500 border-b-2 border-red-500 pb-6 -mb-6' : 'text-gray-500 hover:text-gray-700 transition' }}">
             おすすめ
         </a>
 
-        <a href="/?tab=mylist&keyword={{ request('keyword') }}" 
+        <a href="{{ route('items.index', ['tab' => 'mylist', 'keyword' => request('keyword')]) }}" 
            class="{{ request('tab') === 'mylist' ? 'text-red-500 border-b-2 border-red-500 pb-6 -mb-6' : 'text-gray-500 hover:text-gray-700 transition' }}">
             マイリスト
         </a>

@@ -26,4 +26,12 @@ class ProfileRequest extends FormRequest
             'image' => 'nullable|image|mimes:jpeg,png',
         ];
     }
+    public function messages()
+    {
+    return [
+        'postcode.regex' => '郵便番号はハイフンを含めた形式（例: 123-4567）で入力してください。',
+        'name.required' => 'お名前を入力してください。',
+        'address.required' => '住所を入力してください。',
+    ];
+}
 }

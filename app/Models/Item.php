@@ -20,6 +20,7 @@ class Item extends Model
         'description',
         'condition',
         'image',
+        'is_sold',
     ];
 
     

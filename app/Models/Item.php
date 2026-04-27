@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+
 class Item extends Model
 {
     use HasFactory;
@@ -19,17 +20,18 @@ class Item extends Model
         'description',
         'condition',
         'image',
+        'is_sold',
     ];
 
     
-    public function category()
+    public function categories()
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsToMany(Category::class)->withTimestamps();
     }
 
     public function user()
     {
-    return $this->belongsTo(User::class);
+    return $this->belongsToMany(Category::class)->withTimestamps();
     }
 
     public function comments() { return $this->hasMany(Comment::class); }

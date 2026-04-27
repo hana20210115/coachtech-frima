@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+
+use Illuminate\Http\Request;
 use App\Http\Requests\ProfileRequest;
+use App\Models\Item;
+use App\Models\Order;
 use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
@@ -44,4 +48,19 @@ class ProfileController extends Controller
 
        return redirect('/')->with('status', 'プロフィールを設定しました！');
     }
+    public function index(Request $request)
+    {
+       
+        $user = Auth::user();
+
+        
+        $sellItems = Item::where('user_id', $user->id)->get();
+
+        $buyItems = Order::where('user_id', $user->id)
+        ->with('item')
+        ->get()
+        ->pluck('item');
+
+        return view('mypage', compact('user', 'sellItems', 'buyItems'));
+}
 }

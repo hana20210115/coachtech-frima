@@ -17,4 +17,12 @@ use App\Http\Controllers\ItemController;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/',[ItemController::class, 'index']);
+
+
+Route::get('/email/verify', function () {
+    return view('auth.verify-email');
+})->middleware('auth')->name('verification.notice');
+
+Route::get('/sell', [ItemController::class, 'create'])->name('item.sell');
+
+Route::post('/sell', [ItemController::class, 'store'])->name('item.store');

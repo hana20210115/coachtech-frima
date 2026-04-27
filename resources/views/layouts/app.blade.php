@@ -8,7 +8,7 @@
 </head>
 <body class="bg-white text-gray-900 font-sans leading-normal">
 
-    {{-- ログイン画面・会員登録画面・メール認証画面のみ、シンプルなヘッダー（ロゴのみ）を表示 --}}
+  
     @if(Request::is('register') || Request::is('login') || Request::is('email/verify'))
         <header class="bg-black py-5 px-8 mb-10">
             <div class="flex justify-start items-center">
@@ -18,18 +18,18 @@
             </div>
         </header>
     @else
-        {{-- それ以外の通常画面（トップページ、マイページなど）はフルヘッダーを表示 --}}
+    
         <header class="bg-black text-white py-3 px-6 shadow-md sticky top-0 z-50">
             <div class="container mx-auto flex items-center justify-between gap-8">
                 
-                {{-- ロゴ --}}
+        
                 <h1 class="shrink-0">
                     <a href="{{ route('items.index') }}" class="hover:opacity-80 transition block">
                         <img src="{{ asset('image/logo.png') }}" alt="COACHTECH" class="h-9 w-auto block">
                     </a>
                 </h1>
 
-                {{-- 検索バー --}}
+           
                 <form action="{{ route('items.index') }}" method="GET" class="flex-1 max-w-2xl relative">
                     @if(request('tab') === 'mylist')
                         <input type="hidden" name="tab" value="mylist">
@@ -42,23 +42,23 @@
                            class="w-full bg-white text-gray-900 border-none rounded-md py-1.5 px-4 focus:outline-none focus:ring-2 focus:ring-gray-400">
                 </form>
 
-                {{-- ナビゲーションメニュー --}}
+               
                 <nav class="flex items-center gap-6 font-bold text-sm shrink-0">
                     @auth
-                        {{-- 🟢 ログイン中 --}}
+                        
                         <form method="POST" action="{{ route('logout') }}" class="m-0">
                             @csrf
                             <button type="submit" class="hover:text-gray-300 transition">ログアウト</button>
                         </form>
                         <a href="{{ route('mypage.index') }}" class="hover:text-gray-300 transition">マイページ</a>
                     @else
-                        {{-- 🔴 未ログイン（ゲスト） --}}
+                       
                         <a href="{{ route('login') }}" class="hover:text-gray-300 transition">ログイン</a>
                         <a href="{{ route('register') }}" class="hover:text-gray-300 transition">会員登録</a>
                     @endauth
                     
-                    {{-- 出品ボタン（ログイン状態に関わらず表示。未ログインで押すとログイン画面へ飛ぶ設計が一般的です） --}}
-                    <a href="{{ route('sell.create') }}" class="bg-white text-black px-6 py-2 rounded-md hover:bg-gray-200 transition">出品</a>
+                   
+                    <a href="{{ route('item.sell') }}" class="bg-white text-black px-6 py-2 rounded-md hover:bg-gray-200 transition">出品</a>
                 </nav>
             </div>
         </header>

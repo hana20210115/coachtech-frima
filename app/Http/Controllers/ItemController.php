@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Like; 
 use Illuminate\Support\Facades\Auth;
 use App\Models\Category;
+use App\Models\Condition;
+use App\Http\Requests\ExhibitionRequest;
 
 class ItemController extends Controller
 {
@@ -56,5 +58,33 @@ class ItemController extends Controller
         }
 
         return back();
+    }
+
+    public function create()
+    {
+        $categories = Category::orderBy('id', 'asc')->get();
+        $conditions = Condition::orderBy('id', 'asc')->get();
+
+        return view('sell', compact('categories', 'conditions'));
+    }
+
+    public function store(ExhibitionRequest $request)
+    {
+        $imagePath = $request->file('image')->store('items', 'public');
+
+        $item = Item::create([
+            'user_id'      => Auth::id(),
+            'condition_id' => $request->condition_id,
+            'name'         => $request->name,
+            'brand'        => $request->brand,
+            'description'  => $request->description,
+            'price'        => $request->price,
+            'image'        => $imagePath,
+        ]);
+
+        $item->categories()->attach($request->category_ids);
+
+        
+        return redirect()->route('mypage.index')->with('status', '商品を出品しました');
     }
 }

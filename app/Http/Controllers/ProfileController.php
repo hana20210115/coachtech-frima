@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-
 use Illuminate\Http\Request;
 use App\Http\Requests\ProfileRequest;
 use App\Models\Item;
@@ -18,54 +17,43 @@ class ProfileController extends Controller
     }
 
     public function update(Request $request)
-{
-    
-    $user = Auth::user();
-    
-   
-    $data = $request->only(['name', 'postcode', 'address', 'building_name']);
-
-  
-    if ($request->hasFile('image')) {
-        $path = $request->file('image')->store('profiles', 'public');
-        $data['image'] = $path; // $data配列に画像パスを追加
-    }
-
- 
-    $user->update(['name' => $data['name']]);
-
-
-    $user->profile()->updateOrCreate(
-        ['user_id' => $user->id],
-        [
-            'image' => $data['image'] ?? $user->profile?->image,
-            'postcode' => $data['postcode'],
-            'address' => $data['address'],
-            'building_name' => $data['building_name'],
-        ]
-    );
-
-    return redirect()->route('mypage.index')->with('status', 'プロフィールを更新しました');
-}
-    
+    {
+        $user = Auth::user();
         
+        $data = $request->only(['name', 'postcode', 'address', 'building_name']);
 
-      
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('profiles', 'public');
+            $data['image'] = $path;
+        }
+
+        $user->update(['name' => $data['name']]);
+
+        $user->profile()->updateOrCreate(
+            ['user_id' => $user->id],
+            [
+                'image' => $data['image'] ?? $user->profile?->image,
+                'postcode' => $data['postcode'],
+                'address' => $data['address'],
+                'building_name' => $data['building_name'],
+            ]
+        );
+
+       
+        return redirect()->route('items.index')->with('status', 'プロフィールを更新しました');
+    }
+    
     public function index(Request $request)
     {
-       
         $user = Auth::user()->load('profile');
 
-       
-
-        
         $sellItems = Item::where('user_id', $user->id)->get();
 
         $buyItems = Order::where('user_id', $user->id)
-        ->with('item')
-        ->get()
-        ->pluck('item');
+            ->with('item')
+            ->get()
+            ->pluck('item');
 
         return view('mypage', compact('user', 'sellItems', 'buyItems'));
-}
+    }
 }

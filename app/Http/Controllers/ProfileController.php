@@ -17,41 +17,46 @@ class ProfileController extends Controller
         return view('mypage_edit', compact('user'));
     }
 
-    public function update(ProfileRequest $request)
-    {
-      
-        $user = Auth::user();
-
-       
-        $validatedData = $request->validated();
-
-     
-        $user->update(['name' => $validatedData['name']]);
-
+    public function update(Request $request)
+{
+    
+    $user = Auth::user();
+    
    
-        if ($request->hasFile('image')) {
-            $path = $request->file('image')->store('profile_images', 'public');
-            $validatedData['image'] = $path;
-        }
+    $data = $request->only(['name', 'postcode', 'address', 'building_name']);
 
-        
-        $user->profile()->updateOrCreate(
-            ['user_id' => $user->id], 
-            [
-                'postcode' => $validatedData['postcode'],
-                'address' => $validatedData['address'],
-             
-                'image' => $validatedData['image'] ?? $user->profile?->image,
-                'building_name' => $request->input('building_name'), 
-            ]
-        );
-
-       return redirect('/')->with('status', 'プロフィールを設定しました！');
+  
+    if ($request->hasFile('image')) {
+        $path = $request->file('image')->store('profiles', 'public');
+        $data['image'] = $path; // $data配列に画像パスを追加
     }
+
+ 
+    $user->update(['name' => $data['name']]);
+
+
+    $user->profile()->updateOrCreate(
+        ['user_id' => $user->id],
+        [
+            'image' => $data['image'] ?? $user->profile?->image,
+            'postcode' => $data['postcode'],
+            'address' => $data['address'],
+            'building_name' => $data['building_name'],
+        ]
+    );
+
+    return redirect()->route('mypage.index')->with('status', 'プロフィールを更新しました');
+}
+    
+        
+
+      
     public function index(Request $request)
     {
        
-        $user = Auth::user();
+        $user = Auth::user()->load('profile');
+
+       
 
         
         $sellItems = Item::where('user_id', $user->id)->get();

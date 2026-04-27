@@ -6,8 +6,8 @@
 <div class="max-w-7xl mx-auto px-4 py-12">
     <div class="flex items-center gap-12 mb-16 ml-20">
         <div class="w-40 h-40 rounded-full overflow-hidden bg-gray-200 shrink-0">
-            @if($user->profile && $user->profile->avatar)
-                <img src="{{ asset('storage/' . $user->profile->avatar) }}" alt="プロフィール画像" class="w-full h-full object-cover">
+            @if($user->profile && $user->profile->image)
+                <img src="{{ asset('storage/' . $user->profile->image) }}" alt="プロフィール画像" class="w-full h-full object-cover">
             @endif
         </div>
         

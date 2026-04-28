@@ -4,7 +4,7 @@
 <div class="max-w-2xl mx-auto py-12 px-4 sm:px-6">
     <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">商品の出品</h2>
 
-    <form action="{{ route('item.store') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('item.store') }}" method="POST" novalidate enctype="multipart/form-data">
         @csrf
 
         <div class="mb-12">

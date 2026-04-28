@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="max-w-7xl mx-auto px-4 py-12">
-    <form action="{{ route('purchase.store', $item->id) }}" method="POST" class="flex flex-col lg:flex-row gap-12 items-start">
+    <form action="{{ route('purchase.store', $item->id) }}" method="POST" novalidate class="flex flex-col lg:flex-row gap-12 items-start">
         @csrf
         
         <div class="flex-1 space-y-12">
@@ -21,16 +21,19 @@
             <div class="space-y-4 pb-10 border-b border-gray-300">
                 <h2 class="text-xl font-bold text-gray-900">支払い方法</h2>
                 <div class="relative max-w-sm">
-                    <select name="payment_method" required
-                            class="w-full h-12 px-4 py-2 border border-gray-300 bg-white rounded text-gray-700 text-sm appearance-none focus:outline-none">
+                    <select name="payment_method"
+                            class="w-full h-12 px-4 py-2 border {{ $errors->has('payment_method') ? 'border-red-500' : 'border-gray-300' }} bg-white rounded text-gray-700 text-sm appearance-none focus:outline-none">
                         <option value="" disabled selected>選択してください</option>
-                        <option value="card">カード支払い</option>
-                        <option value="konbini">コンビニ支払い</option>
+                        <option value="card" {{ old('payment_method') == 'card' ? 'selected' : '' }}>カード支払い</option>
+                        <option value="konbini" {{ old('payment_method') == 'konbini' ? 'selected' : '' }}>コンビニ支払い</option>
                     </select>
                     <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-400">
                         <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                     </div>
                 </div>
+                @error('payment_method')
+                    <p class="text-red-500 text-sm mt-1 font-bold">{{ $message }}</p>
+                @enderror
             </div>
 
             <div class="space-y-4 pb-10 border-b border-gray-200">
@@ -44,6 +47,12 @@
                     <p>〒 {{ $address['postcode'] ?? '未登録' }}</p>
                     <p>{{ $address['address'] ?? '住所が登録されていません' }} {{ $address['building'] ?? '' }}</p>
                 </div>
+                
+                <input type="hidden" name="address_id" value="{{ auth()->user()->profile->id ?? '' }}">
+                
+                @error('address_id')
+                    <p class="text-red-500 text-sm mt-1 font-bold">{{ $message }}</p>
+                @enderror
             </div>
         </div>
 

@@ -16,11 +16,11 @@ class ProfileController extends Controller
         return view('mypage_edit', compact('user'));
     }
 
-    public function update(Request $request)
+    public function update(ProfileRequest $request)
     {
         $user = Auth::user();
         
-        $data = $request->only(['name', 'postcode', 'address', 'building_name']);
+        $data = $request->only(['name', 'postcode', 'address', 'building']);
 
         if ($request->hasFile('image')) {
             $path = $request->file('image')->store('profiles', 'public');
@@ -35,11 +35,12 @@ class ProfileController extends Controller
                 'image' => $data['image'] ?? $user->profile?->image,
                 'postcode' => $data['postcode'],
                 'address' => $data['address'],
-                'building_name' => $data['building_name'],
+                'building' => $data['building'],
             ]
         );
 
-       
+        session()->forget('new_address');
+
         return redirect()->route('items.index')->with('status', 'プロフィールを更新しました');
     }
     

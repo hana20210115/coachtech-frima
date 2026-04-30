@@ -26,7 +26,9 @@ class UsersTableSeeder extends Seeder
             'postcode' => '123-4567',
             'address' => '東京都',
             'building' => 'オフィスビル',
-            'image' => null, // 最初は画像なし
+            'image' => null, 
+
+
         ]);
     }
     }

@@ -59,7 +59,6 @@
         <div class="flex flex-wrap gap-2">
 
         
-        
         @foreach($item->categories as $category)
             <span class="bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm">
                 {{ $category->name }}
@@ -85,7 +84,9 @@
             <div class="flex items-center mb-8">
                 <span class="font-bold w-32">商品の状態</span>
                 <span class="text-gray-700">{{ $item->condition->name ?? '目立った傷や汚れなし' }}</span>
-</div>            </div>
+            </div>            
+        </div>
+
 
             <div class="pt-8">
                 <h3 class="text-xl font-bold mb-6">コメント({{ $item->comments()->count() }})</h3>
@@ -94,7 +95,9 @@
                         <div class="flex items-center gap-3 mb-2">
                             <div class="w-10 h-10 bg-gray-300 rounded-full overflow-hidden">
                                 @if($comment->user->profile_image)
-                                    <img src="{{ asset('storage/' . $comment->user->profile_image) }}<" class="w-full h-full object-cover">
+
+                                    <img src="{{ asset('storage/' . $comment->user->profile_image) }}" class="w-full h-full object-cover">
+
                                 @endif
                             </div>
                             <span class="font-bold">{{ $comment->user->name }}</span>
@@ -109,9 +112,13 @@
                     @csrf
                     <div class="mb-4">
                         <label for="comment" class="block font-bold mb-2">商品へのコメント</label>
-                        <textarea id="comment" name="comment" rows="5" class="w-full border border-gray-300 rounded-md p-3 focus:outline-none focus:border-gray-500"></textarea>
 
-                       
+                        <textarea id="comment" name="comment" rows="5" class="w-full border border-gray-300 rounded-md p-3 focus:outline-none focus:border-gray-500">{{ old('comment') }}</textarea>
+                        
+                        @error('comment')
+                            <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                        @enderror
+
                     </div>
                     <button type="submit" class="w-full bg-[#ed6163] hover:bg-red-500 text-white font-bold py-4 rounded transition">
                         コメントを送信する

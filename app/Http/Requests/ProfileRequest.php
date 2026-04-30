@@ -29,6 +29,7 @@ class ProfileRequest extends FormRequest
     public function messages()
     {
     return [
+
         'postcode.required' => '郵便番号を入力してください。',
         'postcode.regex' => '郵便番号はハイフンを含めた形式（例: 123-4567）で入力してください。',
         'name.required' => 'お名前を入力してください。',

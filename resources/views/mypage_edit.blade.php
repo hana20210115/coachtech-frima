@@ -54,11 +54,13 @@
         </div>
 
         <div class="mb-10">
+
             <label for="building" class="block font-bold mb-2">建物名</label>
             <input type="text" id="building" name="building" value="{{ old('building', $user->profile->building ?? '') }}" class="w-full border border-gray-300 rounded p-3 focus:outline-none focus:border-gray-500">
             @error('building')
                 <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
             @enderror
+
         </div>
 
         <button type="submit" class="w-full bg-red-500 hover:bg-red-600 text-white font-bold py-3 rounded transition">

@@ -83,7 +83,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'ja',
 
     /*
     |--------------------------------------------------------------------------
@@ -168,8 +168,10 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-    ])->toArray(),
+        App\Providers\FortifyServiceProvider::class,
 
+    ])->toArray(),
+        
     /*
     |--------------------------------------------------------------------------
     | Class Aliases

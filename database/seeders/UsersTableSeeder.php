@@ -27,6 +27,8 @@ class UsersTableSeeder extends Seeder
             'address' => '東京都',
             'building' => 'オフィスビル',
             'image' => null, 
+
+
         ]);
     }
     }

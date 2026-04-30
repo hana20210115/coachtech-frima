@@ -1,0 +1,33 @@
+
+
+
+```mermaid
+erDiagram
+    users ||--|| profiles : "has"
+    users ||--o{ items : "owns"
+    items }o--|| conditions : "is"
+    items }o--|| categories : "belongs_to"
+
+    users {
+        bigint id PK
+        string name
+    }
+    profiles {
+        bigint id PK
+        bigint user_id FK
+        string address
+    }
+    items {
+        bigint id PK
+        bigint condition_id FK
+        string name
+    }
+    conditions {
+        bigint id PK
+        string name
+    }
+    categories {
+        bigint id PK
+        string name
+    }
+    ```

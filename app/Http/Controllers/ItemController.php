@@ -70,21 +70,18 @@ class ItemController extends Controller
 
     public function store(ExhibitionRequest $request)
     {
-        $imagePath = $request->file('image')->store('items', 'public');
+        $validated = $request->validated();
 
-        $item = Item::create([
-            'user_id'      => Auth::id(),
-            'condition_id' => $request->condition_id,
-            'name'         => $request->name,
-            'brand'        => $request->brand,
-            'description'  => $request->description,
-            'price'        => $request->price,
-            'image'        => $imagePath,
-        ]);
+        $validated['user_id'] = Auth::id();
+        $validated['image'] = $request->file('image')->store('items', 'public');
 
-        $item->categories()->attach($request->category_ids);
+        $categoryIds = $validated['category_ids'];
+        unset($validated['category_ids']);
 
-        
+        $item = Item::create($validated);
+        $item->categories()->attach($categoryIds);
+
         return redirect()->route('mypage.index')->with('status', '商品を出品しました');
     }
+    
 }

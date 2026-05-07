@@ -20,11 +20,12 @@ class ProfileRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|max:20',
-            'postcode' => 'required|max:8|regex:/^\d{3}-\d{4}$/',
-            'address' => 'required|max:255',
-            'image' => 'nullable|image|mimes:jpeg,png',
-        ];
+        
+        'image'    => ['nullable', 'image', 'mimes:jpeg,png'],
+        'name'     => ['required',  'max:20'],
+        'postcode' => ['required',  'regex:/^[0-9]{3}-[0-9]{4}$/'],
+        'address'=> ['required' ],
+    ];
     }
     public function messages()
     {

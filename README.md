@@ -94,9 +94,9 @@ sudo ip link set dev eth0 mtu 1350
 - **パスワード**: `password`
 
 ## 使用技術(実行環境)
-- PHP 8.x
-- Laravel 10.x
-- MySQL 8.x
+- PHP 8.5.3
+- Laravel 10.50.2
+- MySQL 8.4.8
 - Laravel Sail (Docker)
 - Stripe (決済システム)
 - Tailwind CSS
